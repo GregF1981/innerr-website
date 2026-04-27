@@ -1377,7 +1377,7 @@ export default function Home() {
             <Link href="/help"    className="hover:text-white transition-colors duration-200">Help</Link>
             <Link href="/for-hosts" className="hover:text-white transition-colors duration-200">For Hosts</Link>
           </nav>
-          <p className="text-[#444] text-sm">© {new Date().getFullYear()} innerr</p>
+          <p className="text-[#444] text-sm text-center">© 2026 innerr. All rights reserved.<br className="sm:hidden" /> <span className="hidden sm:inline">·</span> Melbourne, Australia</p>
         </div>
       </footer>
     </>
