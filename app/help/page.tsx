@@ -1,145 +1,225 @@
+"use client";
+
 import Link from "next/link";
-import type { Metadata } from "next";
+import { useState } from "react";
+import { HelpNav, HelpFooter } from "./_shared";
 
-export const metadata: Metadata = {
-  title: "Help & FAQ — innerr",
-  description: "Answers to common questions about innerr — the paid fan-to-creator messaging platform.",
-};
-
-const faqs = [
-  {
-    q: "What is innerr?",
-    a: "innerr is a paid messaging platform that connects fans with their favourite creators, influencers and celebrities. Fans pay tokens to send a direct message, and hosts earn money by writing a personal reply. Every message is guaranteed to be read and replied to within 72 hours — or the fan's tokens are automatically refunded.",
-  },
-  {
-    q: "How do tokens work?",
-    a: "Tokens are the currency you use inside innerr to send messages. You buy a token pack (starting from 50 tokens for $10), and spend tokens to message hosts. Each host sets their own token price — usually between 5 and 50 tokens per message. Tokens never expire and can be used on any host at any time.",
-  },
-  {
-    q: "How do I message a host?",
-    a: "Download the innerr app, create an account and buy a token pack. Then browse for a host you'd like to message, tap their profile, and tap 'Send a Message'. Write your message, confirm the token cost, and send. The host will be notified immediately.",
-  },
-  {
-    q: "What happens if a host doesn't reply?",
-    a: "Every host on innerr is held to a 72-hour reply guarantee. If a host hasn't replied within 72 hours, your tokens are automatically refunded to your account. You'll receive a notification when the refund is processed. The host's response rate is also visible on their profile so you know what to expect.",
-  },
-  {
-    q: "How do I become a host?",
-    a: "Download the innerr app and sign up as a host. You'll create a profile with your bio and photo, then set your token price. Once your account is live, fans can start messaging you. We recommend connecting your social accounts so fans can find you easily. Verified badges are available for creators with a significant following.",
-  },
-  {
-    q: "How do I cash out my earnings?",
-    a: "As a host, every time you reply to a fan message the tokens they spent are added to your earnings balance. You can request a payout at any time and funds are sent weekly via bank transfer or your connected payment method. The minimum payout is $20. innerr retains a platform fee — see our Terms of Service for the current rate.",
-  },
-  {
-    q: "Is my payment secure?",
-    a: "Yes. All payments on innerr are processed by Stripe, one of the world's leading payment processors. innerr never stores your card details. All transactions are encrypted with industry-standard TLS, and Stripe handles PCI compliance on our behalf.",
-  },
-  {
-    q: "How do I get verified?",
-    a: "Verification is available to public figures, celebrities, and creators with an established following. To apply, go to your profile in the innerr app and tap 'Apply for Verification'. You'll need to provide links to your public social profiles and a form of government-issued ID. We aim to review applications within 5 business days.",
-  },
-  {
-    q: "How do I report a user?",
-    a: "If you receive an inappropriate message or want to report a profile, tap the three-dot menu on the message or profile and select 'Report'. Choose the reason for your report and submit. Our moderation team reviews all reports within 24 hours. You can also block any user directly from their profile.",
-  },
-  {
-    q: "How do I contact support?",
-    a: "For any questions not answered here, email us at support@innerr.com. We aim to respond to all support requests within 24 hours on business days. You can also find updates on known issues on our social channels.",
-  },
+const ALL_ARTICLES = [
+  { title: "How do I find a host to message?",                  href: "/help/fans",     cat: "Sending Messages" },
+  { title: "How do I send my first message?",                   href: "/help/fans",     cat: "Sending Messages" },
+  { title: "How do tokens work?",                               href: "/help/fans",     cat: "Sending Messages" },
+  { title: "What happens if a host doesn't reply in 72 hours?", href: "/help/fans",     cat: "Sending Messages" },
+  { title: "Can I send images in messages?",                    href: "/help/fans",     cat: "Sending Messages" },
+  { title: "Can I message a host more than once?",              href: "/help/fans",     cat: "Sending Messages" },
+  { title: "How do I follow a host?",                           href: "/help/fans",     cat: "Sending Messages" },
+  { title: "How do I leave a review?",                          href: "/help/fans",     cat: "Sending Messages" },
+  { title: "What is the token price for messaging?",            href: "/help/fans",     cat: "Sending Messages" },
+  { title: "What are tokens?",                                  href: "/help/tokens",   cat: "Tokens & Payments" },
+  { title: "How do I buy tokens?",                              href: "/help/tokens",   cat: "Tokens & Payments" },
+  { title: "What token packages are available?",                href: "/help/tokens",   cat: "Tokens & Payments" },
+  { title: "Do tokens expire?",                                 href: "/help/tokens",   cat: "Tokens & Payments" },
+  { title: "Can I get a refund on tokens?",                     href: "/help/tokens",   cat: "Tokens & Payments" },
+  { title: "What is the 72-hour refund guarantee?",             href: "/help/tokens",   cat: "Tokens & Payments" },
+  { title: "What payment methods are accepted?",                href: "/help/tokens",   cat: "Tokens & Payments" },
+  { title: "Is my payment secure?",                             href: "/help/tokens",   cat: "Tokens & Payments" },
+  { title: "How do I check my token balance?",                  href: "/help/tokens",   cat: "Tokens & Payments" },
+  { title: "What happens to my tokens if I delete my account?", href: "/help/tokens",   cat: "Tokens & Payments" },
+  { title: "How do I become a host?",                           href: "/help/hosts",    cat: "For Hosts" },
+  { title: "How do I set my token price?",                      href: "/help/hosts",    cat: "For Hosts" },
+  { title: "How do I reply to a fan message?",                  href: "/help/hosts",    cat: "For Hosts" },
+  { title: "When do I get paid?",                               href: "/help/hosts",    cat: "For Hosts" },
+  { title: "How do I cash out my earnings?",                    href: "/help/hosts",    cat: "For Hosts" },
+  { title: "What is the 20% platform fee?",                     href: "/help/hosts",    cat: "For Hosts" },
+  { title: "What happens if I don't reply within 72 hours?",    href: "/help/hosts",    cat: "For Hosts" },
+  { title: "How do I apply for official verification?",         href: "/help/hosts",    cat: "For Hosts" },
+  { title: "What are the verification requirements?",           href: "/help/hosts",    cat: "For Hosts" },
+  { title: "How do I create a post?",                           href: "/help/hosts",    cat: "For Hosts" },
+  { title: "What is exclusive content?",                        href: "/help/hosts",    cat: "For Hosts" },
+  { title: "How do I send a broadcast message?",                href: "/help/hosts",    cat: "For Hosts" },
+  { title: "How do I block a user?",                            href: "/help/safety",   cat: "Safety & Privacy" },
+  { title: "How do I report a user?",                           href: "/help/safety",   cat: "Safety & Privacy" },
+  { title: "What content is not allowed on innerr?",            href: "/help/safety",   cat: "Safety & Privacy" },
+  { title: "How does innerr moderate content?",                 href: "/help/safety",   cat: "Safety & Privacy" },
+  { title: "What happens when I report someone?",               href: "/help/safety",   cat: "Safety & Privacy" },
+  { title: "How do I protect my privacy?",                      href: "/help/safety",   cat: "Safety & Privacy" },
+  { title: "How do I delete my account?",                       href: "/help/safety",   cat: "Safety & Privacy" },
+  { title: "What data does innerr store about me?",             href: "/help/safety",   cat: "Safety & Privacy" },
+  { title: "How do I contact support for urgent safety issues?",href: "/help/safety",   cat: "Safety & Privacy" },
+  { title: "The 72-hour reply guarantee — explained",           href: "/help/features", cat: "Features Guide" },
+  { title: "How do automatic token refunds work?",              href: "/help/features", cat: "Features Guide" },
+  { title: "What is exclusive content?",                        href: "/help/features", cat: "Features Guide" },
+  { title: "What does the blue verification tick mean?",        href: "/help/features", cat: "Features Guide" },
+  { title: "How does tipping work?",                            href: "/help/features", cat: "Features Guide" },
+  { title: "How does the review system work?",                  href: "/help/features", cat: "Features Guide" },
+  { title: "What does the green online dot mean?",              href: "/help/features", cat: "Features Guide" },
+  { title: "What is reply rate?",                               href: "/help/features", cat: "Features Guide" },
+  { title: "How do I manage my notifications?",                 href: "/help/features", cat: "Features Guide" },
+  { title: "How does the profanity filter work?",               href: "/help/features", cat: "Features Guide" },
 ];
 
-export default function Help() {
+const POPULAR = [
+  { title: "What is the 72-hour refund guarantee?",     href: "/help/tokens"   },
+  { title: "How do I buy tokens?",                      href: "/help/tokens"   },
+  { title: "How do I become a host?",                   href: "/help/hosts"    },
+  { title: "What is the 20% platform fee?",             href: "/help/hosts"    },
+  { title: "How do I block or report a user?",          href: "/help/safety"   },
+  { title: "What happens if a host doesn't reply?",     href: "/help/tokens"   },
+];
+
+const CATEGORIES = [
+  { emoji: "💬", title: "Sending Messages",   desc: "How to connect with your favourite hosts",         href: "/help/fans"     },
+  { emoji: "🪙", title: "Tokens & Payments",  desc: "Buying tokens, refunds, pricing",                  href: "/help/tokens"   },
+  { emoji: "⭐", title: "For Hosts",           desc: "Earning money, cashing out, verification",         href: "/help/hosts"    },
+  { emoji: "🛡️", title: "Safety & Privacy",   desc: "Blocking, reporting, staying safe",                href: "/help/safety"   },
+  { emoji: "⚙️", title: "Account & Settings", desc: "Profile, notifications, deleting your account",    href: "/help/safety"   },
+  { emoji: "✨", title: "Features Guide",      desc: "Everything innerr can do",                         href: "/help/features" },
+];
+
+export default function HelpCentre() {
+  const [query, setQuery] = useState("");
+
+  const filtered = query.trim()
+    ? ALL_ARTICLES.filter((a) =>
+        a.title.toLowerCase().includes(query.toLowerCase())
+      )
+    : [];
+
   return (
     <>
-      <header className="bg-white border-b border-gray-100">
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 h-16 flex items-center justify-between">
-          <Link href="/" className="text-2xl font-bold italic" style={{ color: "#0095f6" }}>
-            innerr
-          </Link>
-          <nav className="flex items-center gap-6 text-sm font-medium text-gray-500">
-            <Link href="/#how-it-works" className="hover:text-gray-900 transition-colors hidden sm:inline">How it Works</Link>
-            <Link href="/buy-tokens" className="hover:text-gray-900 transition-colors hidden sm:inline">Get Tokens</Link>
-            <a
-              href="#"
-              className="px-4 py-2 rounded-full text-sm font-semibold text-white transition-opacity hover:opacity-90"
-              style={{ backgroundColor: "#0095f6" }}
-            >
-              Download App
-            </a>
-          </nav>
-        </div>
-      </header>
+      <HelpNav />
 
-      <main className="flex-1 bg-gray-50">
-        <section className="pt-16 pb-12 bg-white">
-          <div className="max-w-2xl mx-auto px-4 sm:px-6 text-center">
-            <div className="text-sm font-semibold mb-3" style={{ color: "#0095f6" }}>
-              SUPPORT
-            </div>
-            <h1 className="text-4xl sm:text-5xl font-black text-gray-900 mb-4">Help &amp; FAQ</h1>
-            <p className="text-gray-500 text-lg">
-              Everything you need to know about{" "}
-              <span className="font-bold italic" style={{ color: "#0095f6" }}>innerr</span>.
+      <main className="flex-1 bg-gray-50 min-h-screen">
+
+        {/* ── Hero + search ── */}
+        <section className="bg-white border-b border-gray-100 py-20 px-4">
+          <div className="max-w-2xl mx-auto text-center">
+            <h1 className="text-4xl sm:text-5xl font-black text-gray-900 mb-3">
+              How can we help?
+            </h1>
+            <p className="text-gray-500 mb-8 text-lg">
+              Search for answers or browse topics below.
             </p>
-          </div>
-        </section>
 
-        <section className="py-14">
-          <div className="max-w-3xl mx-auto px-4 sm:px-6">
-            <div className="space-y-4">
-              {faqs.map((faq, i) => (
-                <div key={i} className="bg-white rounded-2xl border border-gray-100 shadow-sm overflow-hidden">
-                  <div className="p-6">
-                    <h2 className="font-bold text-gray-900 text-base mb-3 flex items-start gap-3">
-                      <span
-                        className="w-6 h-6 rounded-lg flex items-center justify-center text-white text-xs font-bold flex-shrink-0 mt-0.5"
-                        style={{ backgroundColor: "#0095f6" }}
-                      >
-                        Q
-                      </span>
-                      {faq.q}
-                    </h2>
-                    <p className="text-gray-500 text-sm leading-relaxed pl-9">{faq.a}</p>
+            <div className="relative">
+              <span className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400 text-lg select-none">
+                🔍
+              </span>
+              <input
+                type="text"
+                placeholder="Search all help articles…"
+                value={query}
+                onChange={(e) => setQuery(e.target.value)}
+                className="w-full pl-12 pr-4 py-4 rounded-2xl border border-gray-200 text-sm bg-white shadow-sm focus:outline-none focus:ring-2 transition-all"
+                style={{ outlineColor: "#0095f6" }}
+              />
+            </div>
+
+            {/* Search results dropdown */}
+            {query.trim() && (
+              <div className="mt-2 bg-white rounded-2xl border border-gray-100 shadow-md text-left overflow-hidden">
+                {filtered.length === 0 ? (
+                  <div className="px-5 py-4 text-sm text-gray-500">
+                    No results for &ldquo;{query}&rdquo; —{" "}
+                    <a
+                      href="mailto:support@innerr.com"
+                      className="underline font-medium"
+                      style={{ color: "#0095f6" }}
+                    >
+                      contact support
+                    </a>
                   </div>
-                </div>
-              ))}
-            </div>
-
-            <div
-              className="mt-10 p-6 rounded-2xl text-center"
-              style={{ backgroundColor: "#e8f4fe" }}
-            >
-              <h3 className="font-bold text-gray-900 mb-2">Still need help?</h3>
-              <p className="text-gray-500 text-sm mb-4">
-                Our support team is here for you. We respond within 24 hours on business days.
-              </p>
-              <a
-                href="mailto:support@innerr.com"
-                className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full text-sm font-bold text-white transition-opacity hover:opacity-90"
-                style={{ backgroundColor: "#0095f6" }}
-              >
-                Email support@innerr.com
-              </a>
-            </div>
+                ) : (
+                  filtered.slice(0, 8).map((a, i) => (
+                    <Link
+                      key={i}
+                      href={a.href}
+                      className="flex items-center justify-between px-5 py-3 border-b border-gray-50 last:border-0 hover:bg-blue-50 transition-colors group"
+                    >
+                      <div>
+                        <div className="text-sm font-medium text-gray-800 group-hover:text-gray-900">
+                          {a.title}
+                        </div>
+                        <div className="text-xs text-gray-400 mt-0.5">{a.cat}</div>
+                      </div>
+                      <span className="text-gray-300 group-hover:text-blue-400 ml-3 flex-shrink-0">
+                        →
+                      </span>
+                    </Link>
+                  ))
+                )}
+              </div>
+            )}
           </div>
         </section>
+
+        {/* ── Category cards ── */}
+        <section className="max-w-5xl mx-auto px-4 sm:px-6 py-16">
+          <h2 className="text-xl font-bold text-gray-900 mb-6">Browse by topic</h2>
+          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
+            {CATEGORIES.map((cat) => (
+              <Link
+                key={cat.title}
+                href={cat.href}
+                className="bg-white rounded-2xl border border-gray-100 p-6 flex items-start gap-4 hover:border-blue-200 hover:shadow-sm transition-all duration-150 group"
+              >
+                <span className="text-3xl flex-shrink-0 leading-none mt-0.5">{cat.emoji}</span>
+                <div>
+                  <div
+                    className="font-bold text-gray-900 mb-1 group-hover:transition-colors"
+                    style={{ fontSize: "15px" }}
+                  >
+                    {cat.title}
+                  </div>
+                  <div className="text-sm text-gray-500 leading-snug">{cat.desc}</div>
+                </div>
+              </Link>
+            ))}
+          </div>
+        </section>
+
+        {/* ── Popular articles ── */}
+        <section className="max-w-5xl mx-auto px-4 sm:px-6 pb-10">
+          <h2 className="text-xl font-bold text-gray-900 mb-6">Popular articles</h2>
+          <div className="grid sm:grid-cols-2 gap-3">
+            {POPULAR.map((p) => (
+              <Link
+                key={p.title}
+                href={p.href}
+                className="bg-white rounded-xl border border-gray-100 px-5 py-4 text-sm font-medium text-gray-700 flex items-center justify-between gap-3 hover:border-blue-200 hover:text-gray-900 transition-all duration-150 group"
+              >
+                <span>{p.title}</span>
+                <span className="text-gray-300 group-hover:text-blue-400 transition-colors flex-shrink-0">
+                  →
+                </span>
+              </Link>
+            ))}
+          </div>
+        </section>
+
+        {/* ── Still need help? ── */}
+        <section className="max-w-5xl mx-auto px-4 sm:px-6 pb-20">
+          <div
+            className="rounded-2xl p-10 text-center"
+            style={{ background: "linear-gradient(135deg, #e8f4ff 0%, #f0eeff 100%)" }}
+          >
+            <div className="text-4xl mb-3">💌</div>
+            <h2 className="text-xl font-bold text-gray-900 mb-2">Still need help?</h2>
+            <p className="text-gray-500 text-sm mb-6 max-w-sm mx-auto">
+              Our support team is here for you. We typically respond within a few hours.
+            </p>
+            <a
+              href="mailto:support@innerr.com"
+              className="inline-flex items-center gap-2 px-7 py-3 rounded-full font-bold text-white text-sm transition-opacity hover:opacity-90"
+              style={{ backgroundColor: "#0095f6", boxShadow: "0 4px 20px rgba(0,149,246,0.3)" }}
+            >
+              Email support@innerr.com
+            </a>
+          </div>
+        </section>
+
       </main>
 
-      <footer className="bg-gray-900 text-gray-400 py-10">
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 flex flex-col sm:flex-row items-center justify-between gap-4">
-          <Link href="/" className="text-xl font-bold italic" style={{ color: "#0095f6" }}>
-            innerr
-          </Link>
-          <nav className="flex flex-wrap justify-center gap-6 text-sm">
-            <Link href="/privacy" className="hover:text-white transition-colors">Privacy</Link>
-            <Link href="/terms" className="hover:text-white transition-colors">Terms</Link>
-            <Link href="/help" className="hover:text-white transition-colors">Help</Link>
-            <Link href="/for-hosts" className="hover:text-white transition-colors">For Hosts</Link>
-          </nav>
-          <div className="text-sm text-gray-500">© {new Date().getFullYear()} innerr</div>
-        </div>
-      </footer>
+      <HelpFooter />
     </>
   );
 }
