@@ -58,7 +58,7 @@ const faqs = [
   },
   {
     q: "Can I get a refund on tokens I haven't used?",
-    a: "If you have unused tokens and would like a refund, contact us at support@innerr.com within 30 days of purchase. We'll review on a case-by-case basis in line with our refund policy.",
+    a: "If you have unused tokens and would like a refund, open the innerr app and tap Help & Support from the menu within 30 days of purchase. We'll review on a case-by-case basis in line with our refund policy.",
   },
 ];
 

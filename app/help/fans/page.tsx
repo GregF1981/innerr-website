@@ -47,7 +47,7 @@ const articles: Article[] = [
     a: (
       <>
         <p>The most common refund is the <strong>72-hour auto-refund</strong> — if a host doesn&apos;t reply in time, the tokens return to your balance automatically. No action needed.</p>
-        <p>For anything else — like an issue with a token purchase — email us at <a href="mailto:support@innerr.com" style={{ color: "#0095f6" }}>support@innerr.com</a> and our team will sort it out as quickly as possible.</p>
+        <p>For anything else — like an issue with a token purchase — open the innerr app and tap Help &amp; Support from the menu.</p>
       </>
     ),
   },

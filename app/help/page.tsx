@@ -119,14 +119,7 @@ export default function HelpCentre() {
               <div className="mt-2 bg-white rounded-2xl border border-gray-100 shadow-md text-left overflow-hidden">
                 {filtered.length === 0 ? (
                   <div className="px-5 py-4 text-sm text-gray-500">
-                    No results for &ldquo;{query}&rdquo; —{" "}
-                    <a
-                      href="mailto:support@innerr.com"
-                      className="underline font-medium"
-                      style={{ color: "#0095f6" }}
-                    >
-                      contact support
-                    </a>
+                    No results for &ldquo;{query}&rdquo; — open the innerr app and tap Help &amp; Support from the menu.
                   </div>
                 ) : (
                   filtered.slice(0, 8).map((a, i) => (
@@ -204,16 +197,9 @@ export default function HelpCentre() {
           >
             <div className="text-4xl mb-3">💌</div>
             <h2 className="text-xl font-bold text-gray-900 mb-2">Still need help?</h2>
-            <p className="text-gray-500 text-sm mb-6 max-w-sm mx-auto">
-              Our support team is here for you. We typically respond within a few hours.
+            <p className="text-gray-500 text-sm max-w-sm mx-auto">
+              To get help, open the innerr app and tap Help &amp; Support from the menu. Our team typically responds within a few hours.
             </p>
-            <a
-              href="mailto:support@innerr.com"
-              className="inline-flex items-center gap-2 px-7 py-3 rounded-full font-bold text-white text-sm transition-opacity hover:opacity-90"
-              style={{ backgroundColor: "#0095f6", boxShadow: "0 4px 20px rgba(0,149,246,0.3)" }}
-            >
-              Email support@innerr.com
-            </a>
           </div>
         </section>
 

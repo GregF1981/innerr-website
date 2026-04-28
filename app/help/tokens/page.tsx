@@ -67,7 +67,7 @@ const articles: Article[] = [
       <>
         <p>Token purchases are generally non-refundable, with one important exception: the <strong>72-hour auto-refund</strong>.</p>
         <p>If you send a message and the host doesn&apos;t reply within 72 hours, those specific tokens are automatically refunded to your balance — no action needed from you.</p>
-        <p>For other refund requests (e.g. a technical error on a purchase), email <a href="mailto:support@innerr.com" style={{ color: "#0095f6" }}>support@innerr.com</a> and we&apos;ll review it. Nothing in our terms limits your rights under Australian Consumer Law.</p>
+        <p>For other refund requests (e.g. a technical error on a purchase), open the innerr app and tap Help &amp; Support from the menu. Nothing in our terms limits your rights under Australian Consumer Law.</p>
       </>
     ),
   },
@@ -127,7 +127,7 @@ const articles: Article[] = [
     a: (
       <>
         <p>Any unused tokens in your account are <strong>forfeited when you delete your account</strong>. Tokens cannot be refunded or transferred before deletion.</p>
-        <p>If you have a significant token balance and are thinking about deleting your account, we recommend spending your tokens first or emailing <a href="mailto:support@innerr.com" style={{ color: "#0095f6" }}>support@innerr.com</a> before proceeding — we may be able to assist.</p>
+        <p>If you have a significant token balance and are thinking about deleting your account, we recommend spending your tokens first or reaching out via Help &amp; Support in the innerr app before proceeding — we may be able to assist.</p>
       </>
     ),
   },

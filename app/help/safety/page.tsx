@@ -114,7 +114,7 @@ const articles: Article[] = [
           <li>If you&apos;re a host, any pending earnings must be cashed out first</li>
           <li>Deletion is <strong>permanent and irreversible</strong> — your username and profile cannot be recovered</li>
         </ul>
-        <p className="mt-2">If you have a significant token balance or are a host with earnings, we recommend emailing <a href="mailto:support@innerr.com" style={{ color: "#0095f6" }}>support@innerr.com</a> before deleting — we may be able to help.</p>
+        <p className="mt-2">If you have a significant token balance or are a host with earnings, we recommend reaching out via Help &amp; Support in the innerr app before deleting — we may be able to help.</p>
       </>
     ),
   },
@@ -146,8 +146,7 @@ const articles: Article[] = [
             {" "}— monitored 7 days a week, urgent cases prioritised
           </li>
           <li>
-            <strong>General support:</strong>{" "}
-            <a href="mailto:support@innerr.com" style={{ color: "#0095f6" }}>support@innerr.com</a>
+            <strong>General support:</strong> open the innerr app and tap Help &amp; Support from the menu
           </li>
         </ul>
         <p className="mt-3">If you or someone else is in immediate danger, <strong>contact emergency services (000 in Australia) first</strong>. innerr is not a crisis service.</p>

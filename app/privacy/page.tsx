@@ -110,7 +110,7 @@ export default function Privacy() {
 
               <h2 className="text-xl font-bold mt-8 mb-3" style={{ color: "#0095f6" }}>8. Your Rights</h2>
               <p className="text-gray-600 text-sm leading-relaxed">
-                Depending on your location, you may have rights including: access to your personal data, correction of inaccurate data, deletion of your account and data, objection to or restriction of processing, and data portability. To exercise any of these rights, email us at <a href="mailto:support@innerr.com" className="underline" style={{ color: "#0095f6" }}>support@innerr.com</a>. We will respond within 30 days.
+                Depending on your location, you may have rights including: access to your personal data, correction of inaccurate data, deletion of your account and data, objection to or restriction of processing, and data portability. To exercise any of these rights, open the innerr app and tap Help &amp; Support from the menu. We will respond within 30 days.
               </p>
 
               <h2 className="text-xl font-bold mt-8 mb-3" style={{ color: "#0095f6" }}>9. Data Retention</h2>
@@ -120,7 +120,7 @@ export default function Privacy() {
 
               <h2 className="text-xl font-bold mt-8 mb-3" style={{ color: "#0095f6" }}>10. Children&apos;s Privacy</h2>
               <p className="text-gray-600 text-sm leading-relaxed">
-                innerr is not directed at children under the age of 17. We do not knowingly collect personal data from anyone under 17. If you believe we have inadvertently collected information from a minor, please contact us immediately at <a href="mailto:support@innerr.com" className="underline" style={{ color: "#0095f6" }}>support@innerr.com</a>.
+                innerr is not directed at children under the age of 17. We do not knowingly collect personal data from anyone under 17. If you believe we have inadvertently collected information from a minor, please contact us immediately via Help &amp; Support in the innerr app.
               </p>
 
               <h2 className="text-xl font-bold mt-8 mb-3" style={{ color: "#0095f6" }}>11. Security</h2>
@@ -144,7 +144,7 @@ export default function Privacy() {
               </p>
               <div className="bg-gray-50 rounded-xl p-4 mt-3 text-sm text-gray-600">
                 <div className="font-semibold text-gray-900 mb-1">innerr Support</div>
-                <div>Email: <a href="mailto:support@innerr.com" className="underline" style={{ color: "#0095f6" }}>support@innerr.com</a></div>
+                <div>Open the innerr app and tap Help &amp; Support from the menu.</div>
                 <div className="mt-1 text-gray-400">Melbourne, Victoria, Australia</div>
               </div>
             </div>

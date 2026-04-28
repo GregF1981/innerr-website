@@ -16,12 +16,6 @@ export function HelpNav() {
           <Link href="/help" className="hover:text-gray-900 transition-colors">
             Help Centre
           </Link>
-          <a
-            href="mailto:support@innerr.com"
-            className="hover:text-gray-900 transition-colors"
-          >
-            Contact
-          </a>
         </div>
       </div>
     </header>
@@ -208,8 +202,19 @@ export function CategoryPage({
             </div>
           )}
 
-          {/* Footer CTA row */}
-          <div className="mt-10 flex flex-col sm:flex-row items-center justify-between gap-4">
+          {/* Can't find your answer? CTA */}
+          <div
+            className="mt-14 rounded-2xl p-10 text-center"
+            style={{ background: "linear-gradient(135deg, #e8f4ff 0%, #f0eeff 100%)" }}
+          >
+            <h2 className="text-xl font-bold text-gray-900 mb-2">Can&apos;t find your answer?</h2>
+            <p className="text-gray-500 text-sm max-w-sm mx-auto">
+              To get help, open the innerr app and tap Help &amp; Support from the menu.
+            </p>
+          </div>
+
+          {/* Back link */}
+          <div className="mt-8">
             <Link
               href="/help"
               className="text-sm font-semibold transition-colors"
@@ -217,16 +222,6 @@ export function CategoryPage({
             >
               ← Back to Help Centre
             </Link>
-            <div className="bg-white rounded-2xl border border-gray-100 px-6 py-4 text-center">
-              <p className="text-sm text-gray-500 mb-1">Still need help?</p>
-              <a
-                href="mailto:support@innerr.com"
-                className="text-sm font-bold transition-opacity hover:opacity-70"
-                style={{ color: "#0095f6" }}
-              >
-                Email support@innerr.com →
-              </a>
-            </div>
           </div>
         </div>
       </main>
