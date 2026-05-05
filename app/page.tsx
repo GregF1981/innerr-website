@@ -417,27 +417,41 @@ export default function Home() {
 
   /* ── Nav background on scroll ── */
   useEffect(() => {
-    const nav = document.getElementById("site-nav");
     const onScroll = () => {
-      const isScrolled = window.scrollY > 50;
-      nav?.classList.toggle("scrolled", isScrolled);
+      const scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
+      const isScrolled = scrollTop > 50;
+      console.log('scrolled:', isScrolled, 'scrollTop:', scrollTop);
       setNavScrolled(isScrolled);
     };
-    window.addEventListener("scroll", onScroll, { passive: true });
-    return () => window.removeEventListener("scroll", onScroll);
+    onScroll();
+    document.addEventListener("scroll", onScroll, { passive: true });
+    return () => document.removeEventListener("scroll", onScroll);
   }, []);
 
   return (
     <>
       {/* ── NAV ── */}
-      <nav id="site-nav" className="fixed top-0 inset-x-0 z-50">
+      <nav
+        id="site-nav"
+        className="fixed top-0 inset-x-0 z-50"
+        style={{
+          backgroundColor: navScrolled ? '#ffffff' : 'transparent',
+          boxShadow: navScrolled ? '0 1px 12px rgba(0,0,0,0.08)' : 'none',
+          transition: 'background-color 0.3s ease, box-shadow 0.3s ease',
+        }}
+      >
         <div className="max-w-6xl mx-auto px-6 h-16 flex items-center justify-between">
-          <Link
-            href="/"
-            className="text-xl font-bold italic transition-colors duration-300"
-            style={{ color: "#0095f6" }}
-          >
-            dropd
+          <Link href="/">
+            <img
+              src={navScrolled ? '/logo-dark.png' : '/logo.png'}
+              alt="dropd"
+              style={{
+                height: navScrolled ? '100px' : '40px',
+                width: 'auto',
+                filter: navScrolled ? 'none' : 'brightness(0) invert(1)',
+                transition: 'filter 0.3s ease',
+              }}
+            />
           </Link>
 
           <div className="hidden md:flex items-center gap-8 text-sm font-medium">
@@ -1364,12 +1378,8 @@ export default function Home() {
       {/* ── FOOTER ── */}
       <footer style={{ backgroundColor: "#111" }} className="py-12">
         <div className="max-w-6xl mx-auto px-6 flex flex-col sm:flex-row items-center justify-between gap-6">
-          <Link
-            href="/"
-            className="text-xl font-bold italic"
-            style={{ color: "#0095f6" }}
-          >
-            dropd
+          <Link href="/">
+            <img src="/logo.png" alt="dropd" style={{ height: '24px', width: 'auto' }} />
           </Link>
           <nav className="flex flex-wrap justify-center gap-8 text-sm font-medium text-[#555]">
             <Link href="/privacy" className="hover:text-white transition-colors duration-200">Privacy</Link>
