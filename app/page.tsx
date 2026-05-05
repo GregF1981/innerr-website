@@ -437,7 +437,7 @@ export default function Home() {
         style={{
           backgroundColor: navScrolled ? '#ffffff' : 'transparent',
           boxShadow: navScrolled ? '0 1px 12px rgba(0,0,0,0.08)' : 'none',
-          transition: 'background-color 0.3s ease, box-shadow 0.3s ease',
+          transition: 'background-color 0.4s ease-in-out, box-shadow 0.4s ease-in-out',
         }}
       >
         <div className="max-w-6xl mx-auto px-6 h-16 flex items-center justify-between">
@@ -449,7 +449,7 @@ export default function Home() {
                 height: navScrolled ? '100px' : '40px',
                 width: 'auto',
                 filter: navScrolled ? 'none' : 'brightness(0) invert(1)',
-                transition: 'filter 0.3s ease',
+                transition: 'filter 0.4s ease-in-out, height 0.4s ease-in-out',
               }}
             />
           </Link>
@@ -459,8 +459,8 @@ export default function Home() {
               <a
                 key={href}
                 href={href}
-                className="transition-colors duration-300 hover:opacity-70"
-                style={{ color: navScrolled ? "#444" : "rgba(255,255,255,0.88)" }}
+                className="hover:opacity-70"
+                style={{ color: navScrolled ? "#444" : "rgba(255,255,255,0.88)", transition: 'color 0.4s ease-in-out' }}
               >
                 {["How it Works", "For Hosts"][i]}
               </a>
@@ -484,10 +484,11 @@ export default function Home() {
           <div className="flex items-center gap-3">
             <a
               href="#download"
-              className="hidden sm:inline-flex px-5 py-2 rounded-full text-sm font-semibold border-2 transition-all duration-300 hover:scale-[1.04]"
+              className="hidden sm:inline-flex px-5 py-2 rounded-full text-sm font-semibold border-2 hover:scale-[1.04]"
               style={{
                 borderColor: navScrolled ? "#0095f6" : "rgba(255,255,255,0.70)",
                 color: navScrolled ? "#0095f6" : "#fff",
+                transition: 'color 0.4s ease-in-out, border-color 0.4s ease-in-out, transform 0.2s ease',
               }}
             >
               Download App
@@ -1313,7 +1314,7 @@ export default function Home() {
         {/* ── DOWNLOAD ── */}
         <section
           id="download"
-          className="py-36 sm:py-48"
+          className="py-20 sm:py-28"
           style={{ backgroundColor: "#f8f9ff" }}
         >
           <div className="max-w-xl mx-auto px-6 text-center fade-up">
@@ -1379,7 +1380,7 @@ export default function Home() {
       <footer style={{ backgroundColor: "#111" }} className="py-12">
         <div className="max-w-6xl mx-auto px-6 flex flex-col sm:flex-row items-center justify-between gap-6">
           <Link href="/">
-            <img src="/logo.png" alt="dropd" style={{ height: '24px', width: 'auto' }} />
+            <img src="/logo-dark.png" alt="dropd" style={{ height: '32px', width: 'auto' }} />
           </Link>
           <nav className="flex flex-wrap justify-center gap-8 text-sm font-medium text-[#555]">
             <Link href="/privacy" className="hover:text-white transition-colors duration-200">Privacy</Link>
