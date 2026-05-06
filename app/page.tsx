@@ -443,13 +443,13 @@ export default function Home() {
         <div className="max-w-6xl mx-auto px-6 h-16 flex items-center justify-between">
           <Link href="/">
             <img
-              src={navScrolled ? '/logo-dark.png' : '/logo.png'}
+              src={navScrolled ? '/logo.png' : '/logo.png'}
               alt="dropd"
               style={{
-                height: navScrolled ? '100px' : '40px',
+                height: '29px',
                 width: 'auto',
                 filter: navScrolled ? 'none' : 'brightness(0) invert(1)',
-                transition: 'filter 0.4s ease-in-out, height 0.4s ease-in-out',
+                transition: 'filter 0.4s ease-in-out',
               }}
             />
           </Link>
